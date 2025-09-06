@@ -1,0 +1,106 @@
+<% layout("/layouts/boilerplate") %>
+
+<body>
+  <div class="row">
+    <div class="col-8 offset-4">
+      <div>
+        <h3 style="color: #fe424d" class="mb-3"><%= listing.title %></h3>
+      </div>
+
+      <div class="card listing-card" style="width: 55%">
+        <img
+          src="<%= listing.image.url %>"
+          class="card-img-top"
+          alt="listing image"
+        />
+        <div class="card-body">
+          Owned by <i><%= listing.Owner.username %></i><br />
+          <p class="card-text"><%= listing.description %></p>
+          <ul>
+            <li>&#8377; <%= listing.price.toLocaleString("en-IN") %></li>
+            <li><%= listing.location %></li>
+            <li><%= listing.country %></li>
+          </ul>
+        </div>
+        <% if(currentUser && currentUser._id.equals(listing.Owner._id)) { %>
+        <a
+          href="/listings/<%= listing._id %>/edit"
+          class="btn btn-outline-dark add-btn"
+          >Edit</a
+        >
+        <form
+          method="POST"
+          action="/listings/<%= listing._id %>/delete?_method=DELETE"
+        >
+          <button class="btn btn-outline-dark delete-btn mt-1">Delete</button>
+        </form>
+        <% } %>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+  <% if(currentUser) { %>
+  <div>
+    <h4>Tell your experience</h4>
+    <form
+      action="/listings/<%= listing.id %>/reviews"
+      method="POST"
+      nonvalidate
+      class="needs-validation"
+    >
+      <div>
+        <label for="rating-value">Rating</label>
+        <div class="star-rating">
+          <% for(let i = 1; i <= 5; i++){ %>
+          <span class="star" data-value="<%= i %>">&#9733;</span>
+          <% } %>
+          <input
+            type="hidden"
+            name="review[rating]"
+            id="rating-value"
+            required
+          />
+        </div>
+        <div class="invalid-feedback">Please add rating</div>
+      </div>
+
+      <div class="mt-2">
+        <label for="review">Review</label>
+        <textarea
+          name="review[review]"
+          class="form-control"
+          required
+        ></textarea>
+      </div>
+      <div class="invalid-feedback">Please add review.</div>
+      <button type="submit" class="btn add-btn mt-2">Give Review</button>
+    </form>
+  </div>
+  <br />
+  <hr />
+  <% } %>
+  <p><b> Reviews </b></p>
+  <div class="row">
+    <% for(review of listing.reviews){ %>
+    <div class="card col-5 ms-3 mb-3 p-2">
+      <div class="card-body">
+        <h5 class="card-title"><%= review.author.username %></h5>
+        <p class="card-text"><%= review.review %></p>
+        <p class="card-text"><%= review.rating %> stars</p>
+
+        <form
+          method="POST"
+          action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE"
+        >
+          <button class="btn btn-outline-dark">Delete</button>
+        </form>
+      </div>
+    </div>
+    <br />
+    <% } %>
+  </div>
+</body>
+
+<script src="/js/rating.js"></script>

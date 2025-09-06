@@ -1,0 +1,131 @@
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+.container {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  flex: 1;
+}
+
+.navbar {
+  height: 5rem;
+  padding: 0rem 2.5rem;
+  position: fixed;
+  background-color: white;
+}
+
+.navbar-brand {
+  font-size: 2rem !important;
+}
+
+.nav-link {
+  font-size: 1.1rem !important;
+  color: #2222;
+}
+
+.fa-compass {
+  color: #fe424d;
+  font-size: 2rem;
+}
+
+footer {
+  padding: 25px 25px;
+  background-color: rgb(234, 234, 234);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: first baseline;
+}
+
+.f-info a {
+  text-decoration: none;
+  color: #222222;
+}
+
+.f-socials .btn:hover {
+  background-color: rgb(212, 212, 212);
+}
+
+.fa-brands {
+  font-size: xx-large;
+  padding: 2px;
+}
+
+.listing-card {
+  border: none !important;
+  margin-bottom: 2rem;
+}
+
+.card-img-top {
+  border-radius: 1.5rem !important;
+  width: 100% !important;
+  object-fit: cover !important;
+}
+
+.card-body {
+  padding: 0 !important;
+}
+
+.card-text p{
+  font-weight: 400 !important;
+}
+
+.listing-link{
+  text-decoration: none;
+  color: black;
+}
+
+/* Card Effect */
+.card-img-overlay {
+  opacity: 0;
+}
+
+.card-img-overlay:hover {
+  opacity: 0.3;
+  background-color: white;
+}
+
+.add-btn {
+  border-color: #fe424d !important;
+}
+
+.add-btn:hover{
+  background-color: #fe424d !important;
+}
+
+.delete-btn {
+  width: 100%;
+}
+
+.star-rating {
+  display: flex;
+  direction: ltr;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.star {
+  color: lightgray;
+  transition: color 0.2s;
+}
+
+.star.hovered,
+.star.selected {
+  color: gold;
+}
+
+@media (max-width: 767.98px) {
+  .navbar-collapse {
+    position: absolute;
+    top: 100%; /* Just below navbar */
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95); /* white with some transparency */
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+}
